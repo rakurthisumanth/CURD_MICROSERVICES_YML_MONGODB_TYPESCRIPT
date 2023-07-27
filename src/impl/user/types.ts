@@ -8,6 +8,7 @@ export class UserApiImpl implements UserApi {
     getUser(): Promise<GetUserResponse>  {
         return new Promise<GetUserResponse>((resolve,reject)=>{
             collections.users!.find({}).toArray(function (err: any,result:any){
+                console.log(result,"resultttttttttttttttttttttttttttttt")
                 if(err) {
                     const response=<GetUserResponse>{
                         status: 400,
@@ -79,9 +80,11 @@ export class UserApiImpl implements UserApi {
  userCreate(request: Api.BODYDATA | undefined): Promise<UserCreateResponse>
  {
     return new Promise<UpdateUserResponse>((resolve,reject)=>{
+        console.log("firstttttt")
         collections.users!.findOne(
             {email:request?.email},
             function(err:any,result:any){
+                console.log(result,"reesultttttttttttttttttt")
                 if(result){
                     const response=<UpdateUserResponse>{
                         status:400,
@@ -90,9 +93,13 @@ export class UserApiImpl implements UserApi {
                     resolve(response)
                 }
                 else{
+                    console.log("Secondddddddddddddddddddddddddddddddddddddddd")
+
                     collections.users!.insertOne(
                         {phonenumber:request?.phonenumber,email:request?.email},
                         function(err:any,result:any){
+                            console.log(err,"erorororororoor")
+                            console.log(result,"resulttttttttttttttttttttttt")
                           if(err){
                             const response=<UpdateUserResponse>{
                                 status:400,

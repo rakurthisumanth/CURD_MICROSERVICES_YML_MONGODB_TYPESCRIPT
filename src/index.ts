@@ -48,6 +48,7 @@ connectToDatabase()
     })
 
 }).catch((error: Error)=>{
+    console.log(error,"errrorrrrrrrrrrrrrrrrrrrrrrrrrrr")
     console.log("Data Base Connected Failed")
     process.exit()
 })
